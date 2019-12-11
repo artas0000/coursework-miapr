@@ -1,0 +1,190 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>reveal.js</title>
+
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/reveal.css">
+	<link rel="stylesheet" href="css/theme/beige.css">
+
+	<!-- Theme used for syntax highlighting of code -->
+	<link rel="stylesheet" href="lib/css/monokai.css">
+
+	<!-- Printing and PDF exports -->
+	<script>
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+		document.getElementsByTagName('head')[0].appendChild(link);
+	</script>
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1 style="font-size: 72px;">Методы многомерной минимизации</h1>
+			</section>
+			<section>
+				<h2>Цель:</h2>
+				<p>Изучить различные методы безусловной многомерной минимизации, провести их сравнение.</p>
+			</section>
+			<section>
+				<h2>Задачей</h2>
+				<p>многомерной оптимизации является минимизация функции U=f(Х1,Х2,…,Хm) от m переменных Х1,Х2,…,Хm.</p>
+			</section>
+			<section>
+				<h2>Поверхность уровня</h2>
+				<p style="font-size: 32px;">Множество точек, для которых U=<span
+						style="font-style: italic;">const</span> называется поверхностью
+					уровня, для двух переменных это множество называется линей уровня.</p>
+				<img style="height: 400px;" src="./assets/slide4.png" alt="">
+			</section>
+			<section>
+				<h2>Градиент</h2>
+				<p>Градиентом функции называют вектор, указывающий направление наибольшего возрастания некоторой
+					величины, он равен
+					частной производной по переменной Xi.</p>
+				<img style="height: 300px;" src="./assets/gradient.gif" alt="">
+			</section>
+			<section>
+				<h1 style="font-size: 72px;">Используемые методы оптимизации</h1>
+				<section>
+					<h6>Метод поординатного спуска</h6>
+				</section>
+				<section>
+					<h6>Метод градиентного спуска</h6>
+				</section>
+				<section>
+					<h6>Метод наискорейшего градиентного спуска</h6>
+				</section>
+			</section>
+			<section>
+				<h2>Постановка задачи</h2>
+				<p>Найти минимум целевой функции f(X1,X2)=2∙X1^2+ X2^2-X1∙X2 с точностью ε=0,01</p>
+			</section>
+			<section>
+				<h3>Метод покоординатного спуска</h3>
+				<section>
+					<p style="font-size: 32px;">В алгоритме покоординатного спуска вводятся точки начала поиска и
+						выбирается
+						направление поиска, после чего изменяя шаг и в соответствии с ним переменную, находим значение
+						функции. Снова изменяем направление поиска. Поиск производится до тех пор, пока максимальный
+						модуль
+						разности текущих и предыдущих переменных не будет меньше либо равен заданной точности. </p>
+				</section>
+				<section>
+					<img src="./assets/slide8_1.png" alt="">
+				</section>
+				<section>
+					<img style="height: 500px;" src="./assets/slide8.png" alt="">
+				</section>
+			</section>
+			<section>
+				<h3>Метод градиентного спуска</h3>
+				<section>
+					<p style="font-size: 32px;">В алгоритме метода простого градиентного спуска шаг
+						является константой, поиск производится до тех пор, пока модуль градиента не будет меньше либо
+						равен точности. </p>
+				</section>
+				<section>
+					<img src="./assets/slide9_1.png" alt="">
+				</section>
+				<section>
+					<img style="height: 450px;" src="./assets/slide9.png" alt="">
+				</section>
+			</section>
+			<section>
+				<h3>Метод наискорейшего градиентного спуска</h3>
+				<section>
+					<p style="font-size: 32px;">В алгоритме метода наискорейшего спуска шаг изменяется и
+						зависит от угла между векторами перехода. </p>
+				</section>
+				<section>
+					<img src="./assets/slide10_1.png" alt="">
+				</section>
+				<section>
+					<img style="width: 450px;" src="./assets/slide10_start.png" alt="">
+				</section>
+				<section>
+					<img style="width: 450px;" src="./assets/slide10_end.png" alt="">
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Программная реализация</h2>
+				</section>
+
+				<section>
+					<p>Результаты минимизации покоординатным методом</p>
+					<img style="width: 450px;" src="./assets/slide11.png" alt="">
+				</section>
+				<section>
+					<p>Результаты минимизации методом градиентного спуска</p>
+					<img style="width: 450px;" src="./assets/slide11_1.png" alt="">
+				</section>
+				<section>
+					<p>Результаты минимизации методом наискорейшего градиентного спуска</p>
+					<img style="width: 450px;" src="./assets/slide11_2.png" alt="">
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Выводы</h2>
+				</section>
+
+				<section>
+					<p>Наименьшее количество итераций при поиске было совершено используя метод покоординатного спуска,
+						также при поиске из точки А(2, 1) данный метод оказался наиболее точным. Однако если бы линия
+						уровня имела изломы, что соответствует оврагам на поверхности, то данный метод был бы
+						непригодным.</p>
+				</section>
+				<section>
+					<p>Использую метод простого градиентного спуска было совершено наибольшее количество итераций. Это
+						обусловлено тем, что шаг в данном методе – константное значение. Недостатком метода является
+						необходимость на каждом шаге вычислять значение градиента, что требует достаточно много времени.
+					</p>
+				</section>
+				<section>
+					<p>Метод наискорейшего градиентного спуска усевершенствует метод простого спуска, т.к. в нём с
+						каждой итерацией изменяется шаг в зависимости от угла между векторами поиска. Используя метод
+						наискорейшего градиентного спуска, даже находясь на большом удалении от оптимума мы быстрее
+						попадаем в его район, в окрестности которого эффективность метода снижается из-за частой смены
+						направления поиска и приближается к эффективности метода градиента.</p>
+				</section>
+			</section>
+		</div>
+	</div>
+
+	<script src="js/reveal.js"></script>
+
+	<script>
+		// More info about config & dependencies:
+		// - https://github.com/hakimel/reveal.js#configuration
+		// - https://github.com/hakimel/reveal.js#dependencies
+		Reveal.initialize({
+			dependencies: [{
+					src: 'plugin/markdown/marked.js'
+				},
+				{
+					src: 'plugin/markdown/markdown.js'
+				},
+				{
+					src: 'plugin/notes/notes.js',
+					async: true
+				},
+				{
+					src: 'plugin/highlight/highlight.js',
+					async: true
+				}
+			]
+		});
+	</script>
+</body>
+
+</html>

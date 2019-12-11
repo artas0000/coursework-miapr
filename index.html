@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+
+<head>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<!-- <script src="js/charting.js"></script> -->
+	
+	<script type="text/javascript" src="https://unpkg.com/vis-graph3d@latest/dist/vis-graph3d.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./main.css">
+	<script type="text/javascript">
+		var data = null;
+		var graph = null;
+
+		function custom(x1, x2) {
+			return ((2 * x1 * x1) + (x2 * x2) - (x1 * x2));
+		}
+
+		function drawVisualization() {
+			data = new vis.DataSet();
+			var counter = 0;
+			var steps = 1; 
+			var axisMax = 10;
+			var axisStep = axisMax / steps;
+			for (var x = -10; x < axisMax; x += 1) {
+				for (var y = -10; y < axisMax; y += 1) {
+					var value = custom(x, y);
+					data.add({
+						id: counter++,
+						x: x,
+						y: y,
+						z: value,
+						style: value
+					});
+				}
+			}
+
+			// specify options
+			var options = {
+				width: '600px',
+				height: '600px',
+				style: 'surface',
+				showPerspective: true,
+				showGrid: true,
+				showShadow: false,
+				keepAspectRatio: true,
+				verticalRatio: 0.75
+			};
+			var container = document.getElementById('mygraph');
+			graph = new vis.Graph3d(container, data, options);
+		}
+	</script>
+	
+</head>
+
+<body onload="drawVisualization();">
+	<header>
+		<div class="header_wrapper">
+			<h1>Методы многомерной минимизации</h1>
+			<div class="methods__choose_wrapper">
+				<button id="coordinate_descent">Покоординатный спуск</button>
+				<button id="gradient_descent_method">Градиентный спуск</button>
+				<button id="steepest_descent_method">Наискорейший градиентный спуск</button>
+				<a href="./reveal.js/index.html" target="_blank">Презентация</a>
+			</div>
+		</div>
+	</header>
+	<main>
+		<section class="methods_wrapper">
+			<div class="input__data_wrapper">
+				<h2>График функции: f(X1,X2)=2∙X1^2+ X2^2-X1∙X2</h2>
+				<img src="" alt="">
+				<div class="input_data">
+					<input type="number" id="x1" value="2">
+					<input type="number" id="x2" value="1">
+					<button class="button">Установить начальную точку</button>
+				</div>
+				<div id="mygraph"></div>
+			</div>
+			<div class="method__solution_wrapper">
+
+			</div>
+		</section>
+	</main>
+	<script src="./gradient_descent_method.js"></script>
+	<script src="./steepest_descent_method.js"></script>
+	<script src="./coordinate_descent.js"></script>
+</body>
